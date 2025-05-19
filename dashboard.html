@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>لوحة التحكم</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-container">
+    <h2>مرحباً <span id="username"></span> 👋</h2>
+    <p>عدد الخطوات: <strong id="steps">0</strong></p>
+    <p>كمية الكهرباء المنتجة: <strong id="electricity">0</strong> وات</p>
+    <button onclick="logout()">تسجيل خروج</button>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("username").textContent = user.username;
+    }
+
+    const steps = Math.floor(Math.random() * 10000);
+    const electricity = steps * 0.02;
+
+    document.getElementById("steps").textContent = steps;
+    document.getElementById("electricity").textContent = electricity.toFixed(2);
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

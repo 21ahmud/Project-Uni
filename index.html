@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عداد الطاقة</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="upload-section">
+      <h2>رفع الملفات</h2>
+      <input type="file" id="fileInput" />
+      <button onclick="uploadFile()">رفع</button>
+    </div>
+    <div class="data-section">
+      <div class="circle">
+        <p>الوزن</p>
+        <h1 id="weight">0 كجم</h1>
+      </div>
+      <div class="circle">
+        <p>عدد الخطوات</p>
+        <h1 id="steps">0</h1>
+      </div>
+      <div class="circle">
+        <p>الكهرباء المنتجة</p>
+        <h1 id="electricity">0 واط</h1>
+      </div>
+      <div class="buttons">
+        <button onclick="updateData()">تحديث البيانات</button>
+        <button onclick="logout()">تسجيل خروج</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

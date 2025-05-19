@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تسجيل دخول</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2>تسجيل دخول</h2>
+    <input type="email" id="email" placeholder="البريد الإلكتروني" />
+    <input type="password" id="password" placeholder="كلمة المرور" />
+    <button onclick="login()">دخول</button>
+    <p>ليس لديك حساب؟ <a href="signup.html">إنشاء حساب</a></p>
+  </div>
+
+  <script>
+    function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(user => user.email === email && user.password === password);
+
+      if (!user) {
+        alert("البريد أو كلمة المرور غير صحيحة");
+        return;
+      }
+
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

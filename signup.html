@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>إنشاء حساب</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2>إنشاء حساب</h2>
+    <input type="text" id="username" placeholder="اسم المستخدم" />
+    <input type="email" id="email" placeholder="البريد الإلكتروني" />
+    <input type="password" id="password" placeholder="كلمة المرور" />
+    <button onclick="signup()">تسجيل</button>
+    <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
+  </div>
+
+  <script>
+    function signup() {
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!username || !email || !password) {
+        alert("يرجى ملء جميع الحقول");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const userExists = users.find(user => user.email === email);
+
+      if (userExists) {
+        alert("هذا البريد مسجل مسبقًا");
+        return;
+      }
+
+      users.push({ username, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("تم إنشاء الحساب بنجاح");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
